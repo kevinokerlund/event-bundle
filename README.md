@@ -1,1 +1,1 @@
-# namespace-events
+# event-bundle
