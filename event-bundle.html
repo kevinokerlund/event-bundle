@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<div id="div1">Click Me</div>
+
+<script src="lib/event-bundle.js"></script>
+
+<script>
+
+	function sayTarget(e) {
+		console.log(e.target);
+	}
+
+	function sayX(e) {
+		console.log(e.clientX);
+	}
+
+
+	var clicks = new EB('clicks')
+		.add(window, 'click', sayTarget)
+		.add(window.div1, 'click', sayX);
+
+
+	var power = new EB('power')
+		.add(window.div1, 'click', sayTarget)
+//		.add(window.div1, 'click', sayX);
+
+
+	//	var home = new EB('home');
+	//	var homenav = new EB('home.nav');
+	//	var homeNavSearch = new EB('home.nav.search');
+
+	//	clicks.empty();
+
+	console.log('Nothing seemed to error out');
+
+</script>
+
+</body>
+</html>
