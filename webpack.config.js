@@ -6,7 +6,7 @@ module.exports = {
 	output: {
 		path: './lib',
 		filename: 'event-bundle.js',
-		library: 'EB',
+		library: 'EventBundle',
 		libraryTarget: 'umd',
 		umdNamedDefine: true
 	},

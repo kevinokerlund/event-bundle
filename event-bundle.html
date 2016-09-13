@@ -21,12 +21,12 @@
 	}
 
 
-	var clicks = new EB('clicks')
+	var clicks = new EventBundle('clicks')
 		.add(window, 'click', sayTarget)
 		.add(window.div1, 'click', sayX);
 
 
-	var power = new EB('power')
+	var power = new EventBundle('power')
 		.add(window.div1, 'click', sayTarget)
 //		.add(window.div1, 'click', sayX);
 
