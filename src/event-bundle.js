@@ -112,10 +112,13 @@ class EventBundle {
 	remove(element, type, callback, options) {
 		let event = findEvent(element, type, callback);
 
-		if (event) {
+		if (event && (event.name == this.name)) {
 			event.element.removeEventListener(event.type, event.callback, event.options);
 			this.events.splice(this.events.indexOf(event), 1);
 			EVENT_REGISTER.splice(EVENT_REGISTER.indexOf(event), 1);
+		}
+		else if (event && (event.name != this.name)) {
+			errors.cannotRemoveEventFromAnotherBundle(event);
 		}
 
 		return this;
