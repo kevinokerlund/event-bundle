@@ -85,16 +85,16 @@ class EventBundle {
 		if (!event) {
 			element.addEventListener(type, callback, options);
 			EVENT_REGISTER.push({
-				name: this.name,
+				inBundle: this.name,
 				element,
 				type,
 				callback,
 				options
 			});
 
-			this.events = EVENT_REGISTER.filter(event => event.name == this.name);
+			this.events = EVENT_REGISTER.filter(event => event.inBundle == this.name);
 		}
-		else if (event.name != this.name) {
+		else if (event.inBundle != this.name) {
 			errors.eventExistsInDifferentNameSpace(event);
 		}
 
@@ -112,12 +112,12 @@ class EventBundle {
 	remove(element, type, callback, options) {
 		let event = findEvent(element, type, callback);
 
-		if (event && (event.name == this.name)) {
+		if (event && (event.inBundle == this.name)) {
 			event.element.removeEventListener(event.type, event.callback, event.options);
 			this.events.splice(this.events.indexOf(event), 1);
 			EVENT_REGISTER.splice(EVENT_REGISTER.indexOf(event), 1);
 		}
-		else if (event && (event.name != this.name)) {
+		else if (event && (event.inBundle != this.name)) {
 			errors.cannotRemoveEventFromAnotherBundle(event);
 		}
 
