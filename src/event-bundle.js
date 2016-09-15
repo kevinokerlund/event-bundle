@@ -58,6 +58,7 @@ class EventBundle {
 	constructor(bundleName) {
 		this.name = bundleName;
 		this.events = [];
+		this.paused = false;
 
 		let instanceWithSameName = findBundleByName(this.name);
 
@@ -83,7 +84,9 @@ class EventBundle {
 		let event = findEvent(element, type, callback);
 
 		if (!event) {
-			element.addEventListener(type, callback, options);
+			if (!this.paused) {
+				element.addEventListener(type, callback, options);
+			}
 			EVENT_REGISTER.push({
 				inBundle: this.name,
 				element,
@@ -130,6 +133,30 @@ class EventBundle {
 	 */
 	empty() {
 		[...this.events].forEach(event => this.remove(event.element, event.type, event.callback, event.options));
+		return this;
+	}
+
+	/**
+	 * Remove all events from elements that are in this bundle until .resume() is called
+	 * @returns {EventBundle}
+	 */
+	pause() {
+		this.events.forEach(event => {
+			event.element.removeEventListener(event.type, event.callback, event.options);
+		});
+		this.paused = true;
+		return this;
+	}
+
+	/**
+	 * Reapplies the events to elements contained in this bundle. Reverses the effect of .pause()
+	 * @returns {EventBundle}
+	 */
+	resume() {
+		this.events.forEach(event => {
+			event.element.addEventListener(event.type, event.callback, event.options);
+		});
+		this.paused = false;
 		return this;
 	}
 
