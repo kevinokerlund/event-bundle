@@ -128,15 +128,6 @@ class EventBundle {
 	}
 
 	/**
-	 * Removes all of the events from the bundle and removes the event from the element.
-	 * @returns {EventBundle}
-	 */
-	empty() {
-		[...this.events].forEach(event => this.remove(event.element, event.type, event.callback, event.options));
-		return this;
-	}
-
-	/**
 	 * Remove all events from elements that are in this bundle until .resume() is called
 	 * @returns {EventBundle}
 	 */
@@ -157,6 +148,15 @@ class EventBundle {
 			event.element.addEventListener(event.type, event.callback, event.options);
 		});
 		this.paused = false;
+		return this;
+	}
+
+	/**
+	 * Removes all of the events from the bundle and removes the event from the element.
+	 * @returns {EventBundle}
+	 */
+	empty() {
+		[...this.events].forEach(event => this.remove(event.element, event.type, event.callback, event.options));
 		return this;
 	}
 
