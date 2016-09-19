@@ -14,10 +14,10 @@ npm i --save event-bundle
 ## Example
 
 ```javascript
-// store an Event Bundle to a variable
+// store an EventBundle to a variable
 var searchEvents = new EventBundle('search');
 
-// add events to hte bundle ()
+// add events to the bundle
 searchEvents
     .add(window, 'keydown', someFunction)
     .add(searchInput, 'click', someOtherFunction);
@@ -55,7 +55,7 @@ bundle.remove(element, type, callback, options);
 ```
 
 ## Pausing all events in a bundle
-You can pause all of the events in bundle temporarily. If an events are added to a bundle while it is "paused", those
+You can pause all of the events in bundle temporarily. If events are added to a bundle while it is "paused", those
 events will automatically be in the "paused" state.
 
 ```javascript
@@ -68,7 +68,7 @@ bundle.resume();
 ```
 
 ## Removing all events from a bundle
-While this method removes all the events from the bundle, it also removes all of the events from the their elements.
+While this method removes all the events from the bundle, it also removes all of the events from their elements.
 
 There are two ways to do this. You can call `empty` on an EventBundle instance, or use the window EventBundle static
 `empty` method.
@@ -80,9 +80,9 @@ bundle.empty();
 
 Using the static `empty` method:
 ```javascript
-EventBundle.empty(`bundleName`);
+EventBundle.empty('bundleName');
 ```
-A string is passed that represents the name of a particular bundle.
+A string is passed that is the name of a bundle.
 
 ## Get an EventBundle instance
 If you do not have the EventBundle instance currently available to you, you can get an event bundle by name.
