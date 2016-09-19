@@ -5,6 +5,8 @@ JavaScript library for organizing and managing DOM events in named bundles.
 Take more control over events in your application by managin related events. For example, you could pause an entire
 group of events while the user is in a particular state where they no longer need those events.
 
+This library is UMD wrapped so it can be used with or without a module loader such as requireJS.
+
 ## Install
  
 ```shell 
@@ -30,7 +32,8 @@ searchEvents.resume();
 ```
 
 ## Creating a new EventBundle
-Create an individualized event bundle by using the EventBundle constructor. The `new` keyword is required to create a new bundle.
+Create an individualized event bundle by using the EventBundle constructor. The `new` keyword is required to create a
+new bundle.
 
 ```javascript
 var bundle = new EventBundle('bundleName');
